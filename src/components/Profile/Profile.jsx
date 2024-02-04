@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Header/Header.jsx";
 import "./Profile.css";
 
-export default function Profile({signOut}) {
+export default function Profile({ signOut }) {
 
   const [isSaveFormBtnVisible, setIsSaveFormBtnVisible] = React.useState(false);
   const [name, setName] = React.useState("Виталий");
@@ -24,10 +24,12 @@ export default function Profile({signOut}) {
 
   return (
     <>
-      <Header />
-      <section className="profile">
+      <header>
+        <Header />
+      </header>
+      <main className="profile">
         <h1 className="profile__title">Привет, {name}!</h1>
-        <form className="profile__form" noValidate>
+        <form className="profile__form" >
           <fieldset className="profile__fieldset">
             <label className="profile__input-label" htmlFor="input-name">Имя</label>
             <input
@@ -66,7 +68,7 @@ export default function Profile({signOut}) {
           </div>
         </form>
         {isSaveFormBtnVisible ? ("") : (<button className="profile__exit-btn btn" type="button" onClick={signOut} aria-label="Выход из профиля">Выйти из аккаунта</button>)}
-      </section>
+      </main>
     </>
   )
 }

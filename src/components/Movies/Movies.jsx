@@ -7,12 +7,16 @@ import Footer from "../Footer/Footer.jsx";
 export default function Movies() {
   return (
     <>
-      <main>
+      <header>
         <Header />
+      </header>
+      <main>
         <SearchForm />
         <MoviesCardList />
       </main>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </>
   )
 }

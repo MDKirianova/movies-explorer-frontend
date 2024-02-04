@@ -10,15 +10,19 @@ import Footer from "../Footer/Footer.jsx";
 export default function Main() {
   return (
     <>
-      <main>
+      <header>
         <Header blueColor />
+      </header>
+      <main>
         <Promo />
         <AboutProject />
         <Techs />
         <AboutMe />
         <Portfolio />
       </main>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

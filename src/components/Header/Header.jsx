@@ -7,7 +7,7 @@ import "./Header.css";
 export default function Header({ blueColor }) {
   return (
     <>
-      <header className={`header ${blueColor ? "header__blue-background" : ""} `}>
+      <header className={`header ${blueColor ? "header_blue-background" : ""} `}>
         <NavLink to={"/"}><img src={logo} alt="Логотип сайта про диплом" className="header__logo link" /></NavLink>
         <Navigation /> 
       </header>

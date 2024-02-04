@@ -47,7 +47,7 @@
   line-height: normal;
 }
 
-.window-from__link-element {
+.window-form__link-element {
   display: flex;
   flex-direction: row;
   column-gap: 7px;
@@ -55,7 +55,7 @@
   padding: 14px 0 0;
 }
 
-.window-from__question {
+.window-form__question {
   margin: 0;
   padding: 0;
   color: #8B8B8B;
@@ -92,7 +92,7 @@
     font-size: 14px;
   }
 
-  .window-from__link-element {
+  .window-form__link-element {
     align-self: center;
   }
 
@@ -100,7 +100,7 @@
     font-size: 14px;
   }
   
-  .window-from__question{
+  .window-form__question{
     font-size: 14px;
   }
 }

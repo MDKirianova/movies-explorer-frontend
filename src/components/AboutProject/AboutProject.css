@@ -23,7 +23,7 @@
   row-gap: 56px;
 }
 
-.about-project__gird_element {
+.about-project__gird-element {
   display: flex;
   flex-direction: column;
   row-gap: 16px;
@@ -98,7 +98,7 @@
     column-gap: 30px;
   }
 
-  .about-project__gird_element {
+  .about-project__gird-element {
     row-gap: 22px;
   }
 
@@ -137,7 +137,7 @@
     column-gap: 40px;
   }
 
-  .about-project__gird_element {
+  .about-project__gird-element {
     row-gap: 26px;
   }
 

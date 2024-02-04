@@ -19,7 +19,7 @@ export default function Navigation() {
   }
 
   return (
-    <>
+    <div className="navigation">
       {
         isAutorized ? (
           <div className="navigation__user">
@@ -51,7 +51,7 @@ export default function Navigation() {
         </section>) : (null)
 
       }
-    </>
+    </div>
 
   )
 }

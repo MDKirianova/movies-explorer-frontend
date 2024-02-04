@@ -27,25 +27,30 @@
 .portfolio__list-element {
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   border-bottom: 1px solid #E6E6E6;
 }
 
-.portfolio__list-element_hidden-line {
+.portfolio__list-element_hiddenline {
   border-bottom: none;
 }
 
 .portfolio__list-link {
   all: unset;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   color: #fff;
   margin: 0;
-  padding: 0 0 19px;
+  padding: 0 0 9px;
   font-size: 18px;
   font-weight: 400;
   line-height: 28px; /* 155.556% */
   letter-spacing: -0.72px;
+}
+
+.portfolio__list-text {
+  margin: 0;
+  padding: 0;
 }
 
 .portfolio__link-icon {
@@ -110,5 +115,8 @@
     border-bottom: 1px solid #424242;;
   }
 
+  .portfolio__list-element_hiddenline {
+    border-bottom: none;
+  }
 }
 

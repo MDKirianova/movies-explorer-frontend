@@ -18,3 +18,5 @@
   let isError = false;
 
 В файлах Login.jsx и Register.jsx есть параметр для отображения ошибок, которые передаются каждого инпута и WindowWithForm.
+
+## Третий этап посвящен React и JS

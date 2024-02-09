@@ -2,7 +2,7 @@ import React from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import "./SearchForm.css";
 
-export default function SearchForm({ searchQuery, setSearchQuery, onSubmit, isShortMoviesChecked, setIsShortMoviesChecked }) {
+export default function SearchForm({ searchQuery, setSearchQuery, onSubmit, isShortMoviesChecked, setIsShortMoviesChecked,  }) {
   const [isSearchFormValid, setIsSearchFormValid] = React.useState(true);
 
 
@@ -15,8 +15,6 @@ export default function SearchForm({ searchQuery, setSearchQuery, onSubmit, isSh
   }
 
   const handleSubmit = (evt) => {
-    evt.preventDefault();
-
     if (searchQuery === "") {
       setIsSearchFormValid(false);
       localStorage.removeItem('search-query');

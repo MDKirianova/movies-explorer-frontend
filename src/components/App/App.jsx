@@ -14,7 +14,7 @@ export default function App() {
   const [loggedIn, setLoggedIn] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState([]);
-  const [movies, setMovies] = React.useState([]);
+  const [movies, setMovies] = React.useState(localStorage.getItem("movies") ? JSON.parse(localStorage.getItem("movies")) : []);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const navigate = useNavigate();
 
@@ -27,9 +27,7 @@ export default function App() {
   };
 
   React.useEffect(() => {
-    // if (loggedIn) {
-    //   const movies = localStorage.getItem("movies");
-        if (searchQuery && movies.length === 0) {
+        if (movies.length === 0) {
           setIsLoading(true);
           MoviesApi
             .getMovies()
@@ -44,8 +42,7 @@ export default function App() {
               setIsLoading(false);
             })
         }
-    // }
-  }, [loggedIn, searchQuery, movies])
+  }, [searchQuery, movies])
   return (
     <Routes>
       <Route path="/" element={<Main />} />

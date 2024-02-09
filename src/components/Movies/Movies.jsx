@@ -30,6 +30,7 @@ export default function Movies({ movies, isLoading }) {
         : false
     )
     .filter((movie) => (isShortMoviesCheckboxChecked ? movie.duration <= 40 : true));
+
   return (
     <>
       <header>
@@ -43,16 +44,17 @@ export default function Movies({ movies, isLoading }) {
           setIsShortMoviesChecked={setIsShortMoviesCheckboxChecked}
           isShortMoviesChecked={isShortMoviesCheckboxChecked}
         /> 
-        { isLoading ? (
+        { searchQuery ? 
+        (isLoading ? (
           <Preloader /> 
-        ): movies.length === 0 ? (
-          <span className="input__error_visible">
+        ): filteredMovies.length === 0 ? (
+          <span className="movies-card-list__error_visible">
             По вашему запросу ничего не найдено
           </span>) : (
             <MoviesCardList
             movies={filteredMovies}
           />
-          ) }
+          )) : null }
       </main>
       <footer>
         <Footer />

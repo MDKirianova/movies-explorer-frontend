@@ -28,6 +28,21 @@
   line-height: normal;
 }
 
+.movies-card-list__error_visible {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  transition-delay:0s;
+  display: block;
+  padding: 6px 0;
+  color: #EE3465;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+
 @media screen and (min-width: 768px) {
   .movies-card-list {
     padding: 80px 30px;

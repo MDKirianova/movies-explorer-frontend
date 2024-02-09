@@ -29,7 +29,7 @@ export default function Profile({ signOut }) {
       </header>
       <main className="profile">
         <h1 className="profile__title">Привет, {name}!</h1>
-        <form className="profile__form" >
+        <form noValidate className="profile__form" >
           <fieldset className="profile__fieldset">
             <label className="profile__input-label" htmlFor="input-name">Имя</label>
             <input

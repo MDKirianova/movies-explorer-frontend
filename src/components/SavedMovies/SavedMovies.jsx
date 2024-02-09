@@ -2,17 +2,42 @@ import React from "react";
 import Header from "../Header/Header.jsx";
 import SearchForm from "../SearchForm/SearchForm.jsx";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.jsx";
-import Footer from "../Footer/Footer.jsx"
+import Footer from "../Footer/Footer.jsx";
 
-export default function SavedMovies() {
+export default function SavedMovies({movies}) {
+  const [currentSearchQuery, setCurrentSearchQuery] = React.useState("");
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [isShortMoviesCheckboxChecked, setIsShortMoviesChecked] = React.useState(false);
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setSearchQuery(currentSearchQuery);
+  };
+
+  const filteredMovies = movies
+    .filter((movie) =>
+      searchQuery
+        ? movies.nameRU.toLowerCase().includes(searchQuery.toLowerCase())
+        : true
+    )
+    .filter((movie) => (isShortMoviesCheckboxChecked ? movie.duration <= 40 : true));
+
   return (
     <>
       <header>
         <Header />
       </header>
       <main>
-        <SearchForm />
-        <MoviesCardList />
+        <SearchForm
+          searchQuery={currentSearchQuery}
+          setSearchQuery={setCurrentSearchQuery}
+          setIsShortMoviesChecked={setIsShortMoviesChecked}
+          isShortMoviesChecked={isShortMoviesCheckboxChecked}
+          onSubmit={onSubmit}
+        />
+        <MoviesCardList
+          searchQuery={searchQuery}
+          movies={filteredMovies} />
       </main>
       <footer>
         <Footer />

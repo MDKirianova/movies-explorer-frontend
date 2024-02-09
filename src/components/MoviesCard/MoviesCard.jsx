@@ -1,7 +1,7 @@
 import React from "react";
 import "./MoviesCard.css";
 
-export default function MoviesCard({ card: {nameRu, duration, imgUrl} }) {
+export default function MoviesCard({ movie: {nameRU, duration, image, key} }) {
 
   function convertMinutesToHours(minutes) {
     if (typeof minutes !== 'number' || minutes < 0) {
@@ -21,12 +21,14 @@ export default function MoviesCard({ card: {nameRu, duration, imgUrl} }) {
   let isRemoveMovies = false;
 
   return (
-    <li className="movies-card">
+    <li className="movies-card" id={key}>
       <div className="movies-card__info">
-        <h2 className="movies-card__title">{nameRu}</h2>
+        <h2 className="movies-card__title">{nameRU}</h2>
         <p className="movies-card__duration">{convertMinutesToHours(duration)}</p>
       </div>
-      <img src={imgUrl} alt="Обложка фильма" className="movies-card__image" />
+      <img src={image.url.startsWith("http")
+              ? image.url
+              : `https://api.nomoreparties.co${image.url}`} alt="Обложка фильма" className="movies-card__image" />
       <button className={`movies-card__btn btn ${isSavedMovie ? 'movies-card__btn_active' : isRemoveMovies ? 'movies-card__btn_remove' : ''}`} type="button" aria-label="Добавление или удаление в избранное"></button>
     </li>
   )

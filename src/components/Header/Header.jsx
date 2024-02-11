@@ -4,12 +4,12 @@ import { NavLink, Outlet } from 'react-router-dom';
 import "./Header.css";
 
 
-export default function Header({ blueColor }) {
+export default function Header({ blueColor, isAutorized }) {
   return (
     <>
       <header className={`header ${blueColor ? "header_blue-background" : ""} `}>
         <NavLink to={"/"}><img src={logo} alt="Логотип сайта про диплом" className="header__logo link" /></NavLink>
-        <Navigation /> 
+        <Navigation isAutorized={isAutorized} /> 
       </header>
       <Outlet />
     </>

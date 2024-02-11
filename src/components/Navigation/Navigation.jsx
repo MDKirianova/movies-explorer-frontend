@@ -4,9 +4,7 @@ import profile from "../../images/profile.svg";
 import burger_logo from "../../images/burger_logo.svg";
 import "./Navigation.css";
 
-export default function Navigation() {
-
-  let isAutorized = true;
+export default function Navigation({isAutorized}) {
 
   const [isModalWindowOpen, setModalWindowOpen] = React.useState(false);
 

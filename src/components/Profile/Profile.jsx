@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Header/Header.jsx";
 import "./Profile.css";
 
-export default function Profile({ signOut }) {
+export default function Profile({ signOut, isAutorized }) {
 
   const [isSaveFormBtnVisible, setIsSaveFormBtnVisible] = React.useState(false);
   const [name, setName] = React.useState("Виталий");
@@ -25,7 +25,7 @@ export default function Profile({ signOut }) {
   return (
     <>
       <header>
-        <Header />
+        <Header isAutorized={isAutorized} />
       </header>
       <main className="profile">
         <h1 className="profile__title">Привет, {name}!</h1>

@@ -36,3 +36,8 @@
   background: #F8F8F8;
   color: #C2C2C2;
 }
+
+.btn_disabled:hover {
+  cursor: not-allowed;
+  opacity: 1;
+}

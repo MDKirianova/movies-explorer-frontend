@@ -1,10 +1,4 @@
 .movies-card {
-  display: block;
-  list-style: none;
-  width: 100%;
-}
-
-.movies-card__trailer {
   text-decoration: none;
   list-style: none;
   display: flex;
@@ -15,6 +9,12 @@
   background-color: #222;
   border-radius: 6px;
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
+
+.movies-card__trailer {
+  text-decoration: none;
+  list-style: none;
 }
 
 .movies-card__info {
@@ -81,7 +81,7 @@
 
 
 @media screen and (min-width: 768px) {
-  .movies-card__trailer {
+  .movies-card {
     margin: 0;
     padding: 18px 0;
     row-gap: 18px;

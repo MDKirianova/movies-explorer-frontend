@@ -1,7 +1,10 @@
 import React from "react";
+import { SavedMoviesContext } from "../../contexts/SavedMoviesContext.js"
 import "./MoviesCard.css";
 
-export default function MoviesCard({ movie: { nameRU, duration, image, key, trailerLink } }) {
+export default function MoviesCard({ movie, savedMoviesPage }) {
+  const savedMoviesContext = React.useContext(SavedMoviesContext);
+  const [isSavedMovie, setSavedMovie] = React.useState(false)
 
   function convertMinutesToHours(minutes) {
     if (typeof minutes !== 'number' || minutes < 0) {
@@ -17,21 +20,36 @@ export default function MoviesCard({ movie: { nameRU, duration, image, key, trai
     return `${formattedHours}ч ${formattedMinutes}м`;
   }
 
-  let isSavedMovie = false;
-  let isRemoveMovies = false;
+  const handleSaveMovie = () => {
+    savedMoviesContext.saveMovie(movie);
+    setSavedMovie(true);
+  };
+
+  const handleDeleteMovie = () => {
+    savedMoviesContext.deleteMovie(
+      savedMoviesContext.savedMovies.find(
+        (savedMovie) => savedMovie.id === movie.id
+      ).savedId
+    );
+  };
+
 
   return (
-    <li className="movies-card" id={key}>
-      <a href={trailerLink} target="_blank" rel="noreferrer" className="movies-card__trailer link">
+    <li className="movies-card">
       <div className="movies-card__info">
-        <h2 className="movies-card__title">{nameRU}</h2>
-        <p className="movies-card__duration">{convertMinutesToHours(duration)}</p>
+        <h2 className="movies-card__title">{movie.nameRU}</h2>
+        <p className="movies-card__duration">{convertMinutesToHours(movie.duration)}</p>
       </div>
-      <img src={image.url.startsWith("http")
-        ? image.url
-        : `https://api.nomoreparties.co${image.url}`} alt="Обложка фильма" className="movies-card__image" />
-      <button className={`movies-card__btn btn ${isSavedMovie ? 'movies-card__btn_active' : isRemoveMovies ? 'movies-card__btn_remove' : ''}`} type="button" aria-label="Добавление или удаление в избранное"></button>
-    </a>
-  </li >
+      <a href={movie.trailerLink} target="_blank" rel="noreferrer" className="movies-card__trailer link">
+        <img src={movie.image.url.startsWith("http")
+          ? movie.image.url
+          : `https://api.nomoreparties.co${movie.image.url}`} alt="Обложка фильма" className="movies-card__image" />
+      </a>
+      {
+        savedMoviesPage ?
+          (<button className="movies-card__btn btn movies-card__btn_remove" type="button" aria-label="Добавление или удаление в избранное" onClick={handleDeleteMovie}></button>)
+          : (<button className={`movies-card__btn btn ${isSavedMovie ? 'movies-card__btn_active' : ''}`} type="button" aria-label="Добавление или удаление в избранное" onClick={handleSaveMovie}></button>)
+      }
+    </li >
   )
 }

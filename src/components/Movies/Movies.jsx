@@ -5,7 +5,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Preloader from "../Preloader/Preloader.jsx";
 
-export default function Movies({ movies, isLoading }) {
+export default function Movies({ movies, isLoading, isAutorized }) {
   const initialFilter = JSON.parse(localStorage.getItem('is-checkbox-checked')) || false;
   const [isShortMoviesCheckboxChecked, setIsShortMoviesCheckboxChecked] = React.useState(initialFilter);
   
@@ -34,7 +34,7 @@ export default function Movies({ movies, isLoading }) {
   return (
     <>
       <header>
-        <Header />
+        <Header isAutorized={isAutorized} />
       </header>
       <main>
         <SearchForm
@@ -53,6 +53,7 @@ export default function Movies({ movies, isLoading }) {
           </span>) : (
             <MoviesCardList
             movies={filteredMovies}
+            savedMoviesPage={false}
           />
           )) : null }
       </main>

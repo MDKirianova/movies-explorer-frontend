@@ -25,6 +25,7 @@ export default function Register({ onRegister }) {
       linkText={"Войти"}
       ariaLabel={"Регистрация аккаунта"}
       isValid={isValid}
+      values={values}
     >
       <Input
         name={"name"}

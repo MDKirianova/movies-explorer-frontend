@@ -24,6 +24,7 @@ export default function Login({ onLogin }) {
       linkText={"Регистрация"}
       ariaLabel={"Авторизация в аккаунте"}
       isValid={isValid}
+      values={values}
     >
       <Input
         name={"email"}

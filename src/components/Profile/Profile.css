@@ -4,6 +4,8 @@
   flex-direction: column;
   align-items: center;
   height: 70vh;
+  width: 260px;
+
 }
 
 .profile__title {
@@ -141,6 +143,7 @@
 @media screen and (min-width: 768px) {
   .profile {
     margin: 236px auto 269px;
+    width: 396px;
   }
 
   .profile__title {

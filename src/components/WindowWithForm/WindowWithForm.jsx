@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import "./WindowWithForm.css";
 
-export default function WindowWithForm({ heading, btnText, question, link, linkText, ariaLabel, isValid, children, onSubmit }) {
+export default function WindowWithForm({ heading, btnText, question, link, linkText, ariaLabel, isValid, children, onSubmit, values }) {
   return (
     <main className="window-form">
       <NavLink to={"/"}><img src={logo} alt="Логотип сайта про диплом" className="window-form__logo link" /></NavLink>
@@ -12,7 +12,7 @@ export default function WindowWithForm({ heading, btnText, question, link, linkT
         <div className="window-form__fieldset">
           {children}
         </div>
-        <button className={`window-form__form-btn btn ${!isValid && "btn_disabled"} || "" `} aria-label={ariaLabel} disabled={!isValid}>{btnText}</button>
+        <button className={`window-form__form-btn btn ${(!isValid || !values.email || !values.password) && "btn_disabled"}`} aria-label={ariaLabel} disabled={!isValid || !values.email || !values.password}>{btnText}</button>
       </form>
       <div className="window-form__link-element">
         <p className="window-form__question">{question}</p>

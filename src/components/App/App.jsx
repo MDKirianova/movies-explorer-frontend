@@ -40,6 +40,15 @@ export default function App() {
       .finally(handleInfoTooltip);
   }
 
+  React.useEffect(() => {
+    if (loggedIn) {
+      MainApi
+      .getSavedMovies().then((res) => {
+        setSavedMovies(res.map(movieMapper));
+      });
+    }
+  }, [loggedIn]);
+
   const signOut = React.useCallback(() => {
     setLoggedIn(false);
     setCurrentUser(null);
@@ -81,14 +90,14 @@ export default function App() {
         setIsSuccessful(true);
         setLoggedIn(true);
         navigate("/movies", { replace: true });
-        handleTokenCheck();
+        // handleTokenCheck();
       })
       .catch((err) => {
         console.log(`Ошибка авторизации: ${err}`);
         setIsSuccessful(false);
         handleInfoTooltip();
       })
-  }, [navigate, handleTokenCheck])
+  }, [navigate])
 
 
   React.useEffect(() => {
@@ -121,6 +130,17 @@ export default function App() {
     }
     // }
   }, [movies]);
+
+  const handleUpdateUser = (data) => {
+    MainApi
+    .setUserInfo(data.name, data.email)
+    .then((user) => {
+      setCurrentUser(user);
+    })
+    .catch((err) => {
+      console.log(`Ошибка при редактировании профиля пользователя: ${err}`);
+    });
+  }
 
   const handleSaveMovie = (movie) => {
     MainApi
@@ -163,9 +183,8 @@ export default function App() {
     >
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
-          <Route path="/" element={<ProtectedRoute
+          <Route path="/" element={<Main
             isAutorized={loggedIn}
-            element={Main}
           />} />
           <Route path="/movies" element={<ProtectedRoute
             isAutorized={loggedIn}
@@ -183,7 +202,8 @@ export default function App() {
           <Route path="/profile" element={<ProtectedRoute
             isAutorized={loggedIn}
             element={Profile}
-            signOut={signOut} />} />
+            signOut={signOut} 
+            onUpdateUser={handleUpdateUser}/>} />
           <Route path="/signin" element={<Login onLogin={handleLogin} />} />
           <Route path="/signup" element={<Register onRegister={handleRegister} />} />
           <Route path="/*" element={<PageNotFound />} />

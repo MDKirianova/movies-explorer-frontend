@@ -5,9 +5,10 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList.jsx";
 import Footer from "../Footer/Footer.jsx";
 
 export default function SavedMovies({ movies, isAutorized }) {
-  const [currentSearchQuery, setCurrentSearchQuery] = React.useState("");
   const [searchQuery, setSearchQuery] = React.useState("");
   const [isShortMoviesCheckboxChecked, setIsShortMoviesChecked] = React.useState(false);
+  const [currentSearchQuery, setCurrentSearchQuery] = React.useState("");
+
 
   const onSubmit = (event) => {
     event.preventDefault();

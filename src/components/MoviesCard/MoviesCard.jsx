@@ -4,7 +4,6 @@ import "./MoviesCard.css";
 
 export default function MoviesCard({ movie, savedMoviesPage }) {
   const savedMoviesContext = React.useContext(SavedMoviesContext);
-  const [isSavedMovie, setSavedMovie] = React.useState(false)
 
   function convertMinutesToHours(minutes) {
     if (typeof minutes !== 'number' || minutes < 0) {
@@ -22,7 +21,6 @@ export default function MoviesCard({ movie, savedMoviesPage }) {
 
   const handleSaveMovie = () => {
     savedMoviesContext.saveMovie(movie);
-    setSavedMovie(true);
   };
 
   const handleDeleteMovie = () => {
@@ -45,11 +43,13 @@ export default function MoviesCard({ movie, savedMoviesPage }) {
           ? movie.image.url
           : `https://api.nomoreparties.co${movie.image.url}`} alt="Обложка фильма" className="movies-card__image" />
       </a>
-      {
-        savedMoviesPage ?
-          (<button className="movies-card__btn btn movies-card__btn_remove" type="button" aria-label="Добавление или удаление в избранное" onClick={handleDeleteMovie}></button>)
-          : (<button className={`movies-card__btn btn ${isSavedMovie ? 'movies-card__btn_active' : ''}`} type="button" aria-label="Добавление или удаление в избранное" onClick={handleSaveMovie}></button>)
-      }
-    </li >
+    {
+  savedMoviesPage
+    ? (<button className="movies-card__btn movies-card__btn_remove btn" type="button" aria-label="Удаление видео из избранного" onClick={handleDeleteMovie}></button>)
+    : savedMoviesContext.savedMovies.map((movie) => movie.id).includes(movie.id)
+      ? (<button className=" movies-card__btn movies-card__btn_active btn" aria-label="Удаление видео из избранного на странице со всеми видео"  onClick={handleDeleteMovie} />)
+      : (<button className="movies-card__btn btn" type="button" aria-label="Добавление видео в избранное" onClick={handleSaveMovie}></button>)
+}
+    </li>
   )
 }

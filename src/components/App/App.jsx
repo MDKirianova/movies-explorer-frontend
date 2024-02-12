@@ -147,6 +147,7 @@ export default function App() {
       .then((user) => {
         setCurrentUser(user);
         setErrorMessages("");
+        setIsSuccessful(true);
       })
       .catch((err) => {
         setErrorMessages(err);

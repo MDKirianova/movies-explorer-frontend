@@ -4,14 +4,14 @@ import "./Profile.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation.js";
 
-export default function Profile({ signOut, isAutorized, onUpdateUser }) {
-  const { values, handleChange, errors, isValid, resetForm } =
+export default function Profile({ signOut, isAutorized, onUpdateUser, error }) {
+  const { values, handleChange, errors, isValid, resetForm, inputChanged } =
     useFormWithValidation();
   const [isSaveFormBtnVisible, setIsSaveFormBtnVisible] = React.useState(false);
   const currentUser = React.useContext(CurrentUserContext);
   const disabledButton =
     (values.name === currentUser.name && values.email === currentUser.email) ||
-    !isValid;
+    !isValid || !inputChanged;
 
   const isError = Object.keys(errors).length > 0;
 
@@ -27,9 +27,8 @@ export default function Profile({ signOut, isAutorized, onUpdateUser }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onUpdateUser(values)
+    onUpdateUser(values);
   }
-  console.log(errors);
 
   return (
     <>
@@ -71,7 +70,7 @@ export default function Profile({ signOut, isAutorized, onUpdateUser }) {
           <div className="profile__actions">
             {
               isSaveFormBtnVisible ? (<>
-                <span className={`profile__error ${isError && "profile__error_visible"} || "" `} id="profile-error">{Object.values(errors).join(", ")}</span>
+                <span className={`error ${isError && "error_visible error_for-btn"} || "" `} id="profile-error">{Object.values(errors)} {error}</span>
                 <button className={`profile__save-form-btn btn ${disabledButton && "btn_disabled"}`} disabled={disabledButton ? true : false} type="submit" aria-label="Сохранение профиля" onClick={handleSubmit}>Сохранить</button>
               </>
               ) : (

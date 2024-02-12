@@ -3,7 +3,7 @@ import { useFormWithValidation } from "../../hooks/useFormWithValidation.js";
 import Input from "../Input/Input.jsx";
 import "./Register.css";
 
-export default function Register({ onRegister }) {
+export default function Register({ onRegister, error }) {
   
   const { values, errors, isValid, handleChange } = useFormWithValidation();
 
@@ -26,6 +26,7 @@ export default function Register({ onRegister }) {
       ariaLabel={"Регистрация аккаунта"}
       isValid={isValid}
       values={values}
+      error={error}
     >
       <Input
         name={"name"}

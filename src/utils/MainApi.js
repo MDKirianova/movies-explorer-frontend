@@ -1,12 +1,29 @@
 const baseUrl = "http://localhost:3000";
 // const moviesUrl = `${process.env.REACT_APP_MAIN_API_URL}`;
+// function sendRequest(res) {
+//   if (res.ok) {
+//     return res.json();
+//   } else { console.log(res);
+//     return Promise.reject(`Ошибка: ${res.status}/${res.statusText}`);
+//   }
+// }
+
 function sendRequest(res) {
   if (res.ok) {
     return res.json();
   } else {
-    return Promise.reject(`Ошибка: ${res.status}/${res.statusText}`);
+    // Если ответ не ok, пробуем распарсить JSON
+    return res.json().then((error) => {
+      // Если в ответе есть сообщение об ошибке, возвращаем его
+      if (error) { console.log(error);
+        return Promise.reject(`${error.message}`);
+      }
+      return Promise.reject(`${res.status}/${res.statusText}`);
+    });
   }
 }
+
+
 
 export const register = (email, password, name) => {
   return fetch(`${baseUrl}/signup`, {

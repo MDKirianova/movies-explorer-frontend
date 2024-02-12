@@ -22,7 +22,7 @@ export default function Input({ name, nameInput, inputId, inputType, defaultValu
         autoComplete={autoComplete}
         />
       <span
-        className={`input__error ${isError && "input__error_visible"} || "" `}
+        className={`error ${isError && "error_visible error_input"} || "" `}
         id={inputId+"-error"}>
         {errText}
       </span>

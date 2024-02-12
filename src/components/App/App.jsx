@@ -23,19 +23,22 @@ export default function App() {
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(false);
   const [isSuccessful, setIsSuccessful] = React.useState(false);
+  const [errorMessages, setErrorMessages] = React.useState("");
   const navigate = useNavigate();
 
-  const handleRegister = ({ name, email, password }) => {
+  const handleRegister = ({ email, password, name }) => {
     MainApi
-      .register(name, email, password)
+      .register(email, password, name)
       .then(() => {
         handleLogin({ email, password })
         setIsSuccessful(true);
         navigate("/movies", { replace: true })
+        setErrorMessages("");
       })
       .catch((err) => {
         console.log(`Ошибка регистрации: ${err}`);
         setIsSuccessful(false);
+        setErrorMessages(err);
       })
       .finally(handleInfoTooltip);
   }
@@ -90,11 +93,12 @@ export default function App() {
         setIsSuccessful(true);
         setLoggedIn(true);
         navigate("/movies", { replace: true });
-        // handleTokenCheck();
+        setErrorMessages("");
       })
       .catch((err) => {
         console.log(`Ошибка авторизации: ${err}`);
         setIsSuccessful(false);
+        setErrorMessages(err);
         handleInfoTooltip();
       })
   }, [navigate])
@@ -136,10 +140,12 @@ export default function App() {
     .setUserInfo(data.name, data.email)
     .then((user) => {
       setCurrentUser(user);
+      setErrorMessages("");
     })
     .catch((err) => {
+      setErrorMessages(err);
       console.log(`Ошибка при редактировании профиля пользователя: ${err}`);
-    });
+    })
   }
 
   const handleSaveMovie = (movie) => {
@@ -203,9 +209,9 @@ export default function App() {
             isAutorized={loggedIn}
             element={Profile}
             signOut={signOut} 
-            onUpdateUser={handleUpdateUser}/>} />
-          <Route path="/signin" element={<Login onLogin={handleLogin} />} />
-          <Route path="/signup" element={<Register onRegister={handleRegister} />} />
+            onUpdateUser={handleUpdateUser} error={errorMessages}/>} />
+          <Route path="/signin" element={<Login onLogin={handleLogin} error={errorMessages} />} />
+          <Route path="/signup" element={<Register onRegister={handleRegister} error={errorMessages} />} />
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
         <InfoTooltipPopup

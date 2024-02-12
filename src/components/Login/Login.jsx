@@ -4,7 +4,7 @@ import { useFormWithValidation } from "../../hooks/useFormWithValidation.js";
 import Input from "../Input/Input.jsx";
 import "./Login.css";
 
-export default function Login({ onLogin }) {
+export default function Login({ onLogin, error }) {
   const { values, errors, isValid, handleChange } = useFormWithValidation();
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -25,6 +25,7 @@ export default function Login({ onLogin }) {
       ariaLabel={"Авторизация в аккаунте"}
       isValid={isValid}
       values={values}
+      error={error}
     >
       <Input
         name={"email"}

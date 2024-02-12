@@ -31,7 +31,7 @@ export default function SearchForm({ searchQuery, setSearchQuery, onSubmit, isSh
         <input className="search-form__input" type="text" value={searchQuery} placeholder="Фильм" onChange={handleChangeInput} required />
         <button className="search-form__btn btn" type="submit" aria-label="Поиск фильмов по тексту" onClick={handleSubmit}>Поиск</button>
       </div>
-      <span className={`input__error ${!isSearchFormValid && "input__error_visible"} || "" `}>
+      <span className={`error ${!isSearchFormValid && "error_visible error_input"} || "" `}>
         Нужно ввести ключевое слово
       </span>
       <FilterCheckbox handleCheckbox={handleCheckbox} isShortMoviesChecked={isShortMoviesChecked} />

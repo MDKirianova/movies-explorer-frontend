@@ -8,7 +8,7 @@ import Preloader from "../Preloader/Preloader.jsx";
 export default function Movies({ movies, isLoading, isAuthorized, error }) {
   const initialFilter = JSON.parse(localStorage.getItem('is-checkbox-checked')) || false;
   const [isShortMoviesCheckboxChecked, setIsShortMoviesCheckboxChecked] = React.useState(initialFilter);
-  
+
   const initialQuery = localStorage.getItem('search-query') || "";
   const [searchQuery, setSearchQuery] = React.useState(initialQuery);
   const [currentSearchQuery, setCurrentSearchQuery] = React.useState(initialQuery);
@@ -24,34 +24,38 @@ export default function Movies({ movies, isLoading, isAuthorized, error }) {
   };
 
   const filteredMovies = movies
-    .filter((movie) => 
-    searchQuery
+    .filter((movie) =>
+      searchQuery
         ? movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase())
         : false
     )
     .filter((movie) => (isShortMoviesCheckboxChecked ? movie.duration <= 40 : true));
 
-    const renderContent = () => {
-      if (!searchQuery) {
-        return null;
-      }
-    
-      if (isLoading) {
-        return <Preloader />;
-      }
-    
-      if (filteredMovies.length === 0 && !error) {
-        return (
-          <span className="movies-card-list__error_visible">
-            По вашему запросу ничего не найдено
-          </span>
-        );
-      } else if (filteredMovies.length === 0 && error) {
-        return <span className="movies-card-list__error_visible">{error}</span>;
-      } else {
-        return <MoviesCardList movies={filteredMovies} savedMoviesPage={false} />;
-      }
+  const renderContent = () => {
+    if (!searchQuery) {
+      return null;
     }
+
+    if (isLoading) {
+      console.log(isLoading);
+      return <Preloader />;
+    }
+
+    if (filteredMovies.length === 0 && !error) {
+      return (
+        <span className="movies-card-list__error_visible">
+          По вашему запросу ничего не найдено
+        </span>
+      );
+    }
+
+    if (filteredMovies.length === 0 && error) {
+      return <span className="movies-card-list__error_visible">{error}</span>;
+    }
+
+    return <MoviesCardList movies={filteredMovies} savedMoviesPage={false} />;
+  }
+
 
   return (
     <>
@@ -65,7 +69,7 @@ export default function Movies({ movies, isLoading, isAuthorized, error }) {
           onSubmit={onSubmit}
           setIsShortMoviesChecked={setIsShortMoviesCheckboxChecked}
           isShortMoviesChecked={isShortMoviesCheckboxChecked}
-        /> 
+        />
         {renderContent()}
       </main>
       <footer>

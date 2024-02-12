@@ -18,6 +18,7 @@ import { movieMapper } from "../../utils/movieMapper.js";
 export default function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isAuthChecking, setIsAuthChecking] = React.useState(true);
   const [currentUser, setCurrentUser] = React.useState({});
   const [movies, setMovies] = React.useState(localStorage.getItem("movies") ? JSON.parse(localStorage.getItem("movies")) : []);
   const [savedMovies, setSavedMovies] = React.useState([]);
@@ -66,6 +67,7 @@ export default function App() {
   const handleTokenCheck = React.useCallback(() => {
     let token = localStorage.getItem("token");
     if (token) {
+      setLoggedIn(true);
       MainApi
         .getUserInfo(token)
         .then((user) => {
@@ -74,7 +76,6 @@ export default function App() {
               email: user.email,
               name: user.name,
             });
-            setLoggedIn(true);
             setCurrentUser(userData);
           }
         })
@@ -82,6 +83,11 @@ export default function App() {
           console.log(`Ошибка получения токена: ${err}`);
           signOut();
         })
+        .finally(() => {
+          setIsAuthChecking(false)
+        })
+    } else {
+      setIsAuthChecking(false); 
     }
   }, [signOut]);
 
@@ -194,6 +200,7 @@ export default function App() {
           />} />
           <Route path="/movies" element={<ProtectedRoute
             isAutorized={loggedIn}
+            isAuthChecking={isAuthChecking}
             isLoading={isLoading}
             element={Movies}
             movies={movies}
@@ -201,12 +208,14 @@ export default function App() {
           } />
           <Route path="/saved-movies" element={<ProtectedRoute
             isAutorized={loggedIn}
+            isAuthChecking={isAuthChecking}
             element={SavedMovies}
             movies={savedMovies}
           />
           } />
           <Route path="/profile" element={<ProtectedRoute
             isAutorized={loggedIn}
+            isAuthChecking={isAuthChecking}
             element={Profile}
             signOut={signOut} 
             onUpdateUser={handleUpdateUser} error={errorMessages}/>} />

@@ -18,7 +18,7 @@ export default function SavedMovies({ movies, isAutorized }) {
   const filteredMovies = movies
     .filter((movie) =>
       searchQuery
-        ? movies.nameRU.toLowerCase().includes(searchQuery.toLowerCase())
+        ? movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase())
         : true
     )
     .filter((movie) => (isShortMoviesCheckboxChecked ? movie.duration <= 40 : true));

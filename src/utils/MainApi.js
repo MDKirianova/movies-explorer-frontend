@@ -1,12 +1,4 @@
-const baseUrl = "http://localhost:3000";
-// const moviesUrl = `${process.env.REACT_APP_MAIN_API_URL}`;
-// function sendRequest(res) {
-//   if (res.ok) {
-//     return res.json();
-//   } else { console.log(res);
-//     return Promise.reject(`Ошибка: ${res.status}/${res.statusText}`);
-//   }
-// }
+const baseUrl = `${process.env.REACT_APP_MAIN_API_URL}`;
 
 function sendRequest(res) {
   if (res.ok) {

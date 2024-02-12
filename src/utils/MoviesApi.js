@@ -1,5 +1,4 @@
 const moviesUrl = "https://api.nomoreparties.co/beatfilm-movies";
-// const moviesUrl = `${process.env.REACT_APP_MOVIES_API_URL}`;
 
 function sendRequest(res) {
   if (res.ok) {

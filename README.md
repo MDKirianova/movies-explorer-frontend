@@ -1,5 +1,7 @@
 ## Дипломная работа 
 
+Ссылка на pr в гитхабе четвертого этапа проекта - [level-3](https://github.com/MDKirianova/movies-explorer-frontend/pull/2)
+
 [Ссылка на макет, выбранный вариант dark-4](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/%D0%94%D0%B8%D0%BF%D0%BB%D0%BE%D0%BC%D0%BD%D1%8B%D0%B9-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82?type=design&node-id=24-3210&mode=design&t=rUxfzIelo1SOIHaO-4)
 
 [Cсылка на репозиторий](https://github.com/MDKirianova/movies-explorer-frontend). Работы ведутся в ветке level-3

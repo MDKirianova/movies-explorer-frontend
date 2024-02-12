@@ -123,7 +123,7 @@ export default function App() {
   }
 
   React.useEffect(() => {
-    if (movies.length === 0) {
+    if (loggedIn && movies.length === 0) {
       setIsLoading(true);
       MoviesApi
         .getMovies()
@@ -139,7 +139,7 @@ export default function App() {
         })
     }
     // }
-  }, [movies]);
+  }, [movies, loggedIn]);
 
   const handleUpdateUser = (data) => {
     MainApi

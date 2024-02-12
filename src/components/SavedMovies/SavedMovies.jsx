@@ -4,7 +4,7 @@ import SearchForm from "../SearchForm/SearchForm.jsx";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.jsx";
 import Footer from "../Footer/Footer.jsx";
 
-export default function SavedMovies({ movies, isAutorized }) {
+export default function SavedMovies({ movies, isAuthorized }) {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [isShortMoviesCheckboxChecked, setIsShortMoviesChecked] = React.useState(false);
   const [currentSearchQuery, setCurrentSearchQuery] = React.useState("");
@@ -26,7 +26,7 @@ export default function SavedMovies({ movies, isAutorized }) {
   return (
     <>
       <header>
-        <Header isAutorized={isAutorized} />
+        <Header isAuthorized={isAuthorized} />
       </header>
       <main>
         <SearchForm

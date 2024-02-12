@@ -47,9 +47,9 @@ export default function App() {
   React.useEffect(() => {
     if (loggedIn) {
       MainApi
-      .getSavedMovies().then((res) => {
-        setSavedMovies(res.map(movieMapper));
-      });
+        .getSavedMovies().then((res) => {
+          setSavedMovies(res.map(movieMapper));
+        });
     }
   }, [loggedIn]);
 
@@ -87,7 +87,7 @@ export default function App() {
           setIsAuthChecking(false)
         })
     } else {
-      setIsAuthChecking(false); 
+      setIsAuthChecking(false);
     }
   }, [signOut]);
 
@@ -133,6 +133,7 @@ export default function App() {
         })
         .catch((err) => {
           console.log(err);
+          setErrorMessages('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
         })
         .finally(() => {
           setIsLoading(false);
@@ -143,15 +144,15 @@ export default function App() {
 
   const handleUpdateUser = (data) => {
     MainApi
-    .setUserInfo(data.name, data.email)
-    .then((user) => {
-      setCurrentUser(user);
-      setErrorMessages("");
-    })
-    .catch((err) => {
-      setErrorMessages(err);
-      console.log(`Ошибка при редактировании профиля пользователя: ${err}`);
-    })
+      .setUserInfo(data.name, data.email)
+      .then((user) => {
+        setCurrentUser(user);
+        setErrorMessages("");
+      })
+      .catch((err) => {
+        setErrorMessages(err);
+        console.log(`Ошибка при редактировании профиля пользователя: ${err}`);
+      })
   }
 
   const handleSaveMovie = (movie) => {
@@ -196,31 +197,37 @@ export default function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
           <Route path="/" element={<Main
-            isAutorized={loggedIn}
+            isAuthorized={loggedIn}
           />} />
           <Route path="/movies" element={<ProtectedRoute
-            isAutorized={loggedIn}
+            isAuthorized={loggedIn}
             isAuthChecking={isAuthChecking}
             isLoading={isLoading}
             element={Movies}
             movies={movies}
+            error={errorMessages}
           />
           } />
           <Route path="/saved-movies" element={<ProtectedRoute
-            isAutorized={loggedIn}
+            isAuthorized={loggedIn}
             isAuthChecking={isAuthChecking}
             element={SavedMovies}
             movies={savedMovies}
           />
           } />
           <Route path="/profile" element={<ProtectedRoute
-            isAutorized={loggedIn}
+            isAuthorized={loggedIn}
             isAuthChecking={isAuthChecking}
             element={Profile}
-            signOut={signOut} 
-            onUpdateUser={handleUpdateUser} error={errorMessages}/>} />
-          <Route path="/signin" element={<Login onLogin={handleLogin} error={errorMessages} />} />
-          <Route path="/signup" element={<Register onRegister={handleRegister} error={errorMessages} />} />
+            signOut={signOut}
+            onUpdateUser={handleUpdateUser}
+            error={errorMessages} />} />
+          <Route path="/signin" element={<Login
+            onLogin={handleLogin}
+            error={errorMessages} />} />
+          <Route path="/signup" element={<Register
+            onRegister={handleRegister}
+            error={errorMessages} />} />
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
         <InfoTooltipPopup

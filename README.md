@@ -12,7 +12,7 @@
   let isRemoveMovies = false;
 
 В файле Navigation.jsx можно управлять авторизованностью пользователя с помощью параметра:
-  let isAutorized = true;
+  let isAuthorized = true;
 
 В файле Profile.jsx можно управлять отображением ошибки с помощью параметра:
   let isError = false;

@@ -4,7 +4,7 @@ import "./Profile.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation.js";
 
-export default function Profile({ signOut, isAutorized, onUpdateUser, error }) {
+export default function Profile({ signOut, isAuthorized, onUpdateUser, error }) {
   const { values, handleChange, errors, isValid, resetForm, inputChanged } =
     useFormWithValidation();
   const [isSaveFormBtnVisible, setIsSaveFormBtnVisible] = React.useState(false);
@@ -33,7 +33,7 @@ export default function Profile({ signOut, isAutorized, onUpdateUser, error }) {
   return (
     <>
       <header>
-        <Header isAutorized={isAutorized} />
+        <Header isAuthorized={isAuthorized} />
       </header>
       <main className="profile">
         <h1 className="profile__title">Привет, {currentUser.name}!</h1>

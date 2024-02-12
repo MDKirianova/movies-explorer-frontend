@@ -4,7 +4,7 @@ import profile from "../../images/profile.svg";
 import burger_logo from "../../images/burger_logo.svg";
 import "./Navigation.css";
 
-export default function Navigation({isAutorized}) {
+export default function Navigation({isAuthorized}) {
 
   const [isModalWindowOpen, setModalWindowOpen] = React.useState(false);
 
@@ -19,7 +19,7 @@ export default function Navigation({isAutorized}) {
   return (
     <div className="navigation">
       {
-        isAutorized ? (
+        isAuthorized ? (
           <div className="navigation__user">
             <nav className="navigation__desktop">
               <ul className="navigation__links">

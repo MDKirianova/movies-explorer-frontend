@@ -5,7 +5,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Preloader from "../Preloader/Preloader.jsx";
 
-export default function Movies({ movies, isLoading, isAutorized }) {
+export default function Movies({ movies, isLoading, isAuthorized, error }) {
   const initialFilter = JSON.parse(localStorage.getItem('is-checkbox-checked')) || false;
   const [isShortMoviesCheckboxChecked, setIsShortMoviesCheckboxChecked] = React.useState(initialFilter);
   
@@ -31,10 +31,32 @@ export default function Movies({ movies, isLoading, isAutorized }) {
     )
     .filter((movie) => (isShortMoviesCheckboxChecked ? movie.duration <= 40 : true));
 
+    const renderContent = () => {
+      if (!searchQuery) {
+        return null;
+      }
+    
+      if (isLoading) {
+        return <Preloader />;
+      }
+    
+      if (filteredMovies.length === 0 && !error) {
+        return (
+          <span className="movies-card-list__error_visible">
+            По вашему запросу ничего не найдено
+          </span>
+        );
+      } else if (filteredMovies.length === 0 && error) {
+        return <span className="movies-card-list__error_visible">{error}</span>;
+      } else {
+        return <MoviesCardList movies={filteredMovies} savedMoviesPage={false} />;
+      }
+    }
+
   return (
     <>
       <header>
-        <Header isAutorized={isAutorized} />
+        <Header isAuthorized={isAuthorized} />
       </header>
       <main>
         <SearchForm
@@ -44,18 +66,7 @@ export default function Movies({ movies, isLoading, isAutorized }) {
           setIsShortMoviesChecked={setIsShortMoviesCheckboxChecked}
           isShortMoviesChecked={isShortMoviesCheckboxChecked}
         /> 
-        { searchQuery ? 
-        (isLoading ? (
-          <Preloader /> 
-        ): filteredMovies.length === 0 ? (
-          <span className="movies-card-list__error_visible">
-            По вашему запросу ничего не найдено
-          </span>) : (
-            <MoviesCardList
-            movies={filteredMovies}
-            savedMoviesPage={false}
-          />
-          )) : null }
+        {renderContent()}
       </main>
       <footer>
         <Footer />

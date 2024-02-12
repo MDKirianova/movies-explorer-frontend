@@ -7,7 +7,7 @@ const ProtectedRoute = ({ element: Component, ...props }) => {
     return <div>Loading...</div>;
   }
 
-  return props.isAutorized ? (
+  return props.isAuthorized ? (
     <Component {...props} />
   ) : (
     <Navigate to="/signin" replace />

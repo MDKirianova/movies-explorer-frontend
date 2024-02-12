@@ -139,7 +139,6 @@ export default function App() {
           setIsLoading(false);
         })
     }
-    // }
   }, [movies, loggedIn]);
 
   const handleUpdateUser = (data) => {

@@ -78,30 +78,3 @@ export default function MoviesCardList({ movies, savedMoviesPage }) {
     </section>
   );
 }
-
-
-
-// import React from "react";
-// import MoviesCard from "../MoviesCard/MoviesCard.jsx";
-// import "./MoviesCardList.css";
-
-
-// export default function MoviesCardList({ movies, searchQuery }) {
-
-
-//   return (
-//     <section className="movies-card-list">
-//       <ul className="movies-card-list__grid">
-//         {movies.map((movie) => {
-//           return (
-//             <MoviesCard
-//               movie={movie}
-//               key={movie.movieId}
-//             />
-//           );
-//         })}
-//       </ul>
-//       <button className="movies-card-list__more-btn btn" type="button" aria-label="Просмотр еще видео">Ещё</button>
-//     </section>
-//   )
-// }

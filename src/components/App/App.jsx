@@ -152,6 +152,7 @@ export default function App() {
         setErrorMessages(err);
         console.log(`Ошибка при редактировании профиля пользователя: ${err}`);
       })
+      .finally(handleInfoTooltip);
   }
 
   const handleSaveMovie = (movie) => {

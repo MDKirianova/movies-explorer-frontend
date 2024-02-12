@@ -8,8 +8,8 @@ export default function InfoTooltipPopup({ name, isSuccessful, isOpen, onClose }
     <div className={`popup popup_${name} ${isOpen ? "popup_opened" : ""}`}>
       <div className="popup__container">
         <button type="button" aria-label="Кнопка для скрытия попапа" className="popup__close-btn btn" onClick={onClose} />
-        <img className="popup__tooltip-icon" alt={isSuccessful ? "Вы успешно зарегистрировались!" : "Что-то пошло не так!Попробуйте ещё раз."} src={isSuccessful ? succes_icon : error_icon} />
-        <h2 className="popup__subtitle">{isSuccessful ? "Вы успешно зарегистрировались!" : "Что-то пошло не так!Попробуйте ещё раз."}</h2>
+        <img className="popup__tooltip-icon" alt={isSuccessful ? "Вы успешно зарегистрировались/обновили профиль!" : "Что-то пошло не так!Попробуйте ещё раз."} src={isSuccessful ? succes_icon : error_icon} />
+        <h2 className="popup__subtitle">{isSuccessful ? "Вы успешно зарегистрировались/обновили профиль!" : "Что-то пошло не так!Попробуйте ещё раз."}</h2>
       </div>
     </div>
   )

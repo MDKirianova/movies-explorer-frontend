@@ -2,7 +2,7 @@ import React from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import "./SearchForm.css";
 
-export default function SearchForm({ searchQuery, setSearchQuery, onSubmit, isShortMoviesChecked, setIsShortMoviesChecked,  }) {
+export default function SearchForm({ searchQuery, setSearchQuery, onSubmit, isShortMoviesChecked, setIsShortMoviesChecked, savedMoviesPage }) {
   const [isSearchFormValid, setIsSearchFormValid] = React.useState(true);
 
 
@@ -15,15 +15,30 @@ export default function SearchForm({ searchQuery, setSearchQuery, onSubmit, isSh
   }
 
   const handleSubmit = (evt) => {
-    if (searchQuery === "") {
-      setIsSearchFormValid(false);
-      localStorage.removeItem('search-query');
+    if (!savedMoviesPage) {
+      if (searchQuery === "") {
+        evt.preventDefault();
+        setIsSearchFormValid(false);
+      } else {
+        setIsSearchFormValid(true);
+      }
     }
-    else {
-      setIsSearchFormValid(true);
-      localStorage.setItem('search-query', searchQuery);
-    }
+    
   }
+
+  // const handleSubmit = (evt) => {
+  //   if (!savedMoviesPage && searchQuery !== "") {
+  //     localStorage.setItem('search-query', searchQuery);
+  //     setIsSearchFormValid(true);
+  //   } else if (!savedMoviesPage && searchQuery === "") {
+  //     localStorage.removeItem('search-query');
+  //     setIsSearchFormValid(false);
+  //   } else if (searchQuery !== "") {
+  //     setIsSearchFormValid(true);
+  //   } else {
+  //     setIsSearchFormValid(false);
+  //   }
+  // }
 
   return (
     <form noValidate className="search-form" name="searcform" onSubmit={onSubmit} >

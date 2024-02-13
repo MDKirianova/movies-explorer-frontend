@@ -35,7 +35,9 @@ export default function SavedMovies({ movies, isAuthorized }) {
           setIsShortMoviesChecked={setIsShortMoviesChecked}
           isShortMoviesChecked={isShortMoviesCheckboxChecked}
           onSubmit={onSubmit}
+          savedMoviesPage
         />
+        
         <MoviesCardList
           savedMoviesPage
           movies={filteredMovies} />

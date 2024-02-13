@@ -5,14 +5,13 @@ export default function FilterCheckbox({ handleCheckbox, isShortMoviesChecked })
 
   const toggleShortMoviesCheckbox = ({ type, target }) => {
     let checked;
-
     if (type === "change") {
       checked = target.checked;
     }
-    if (checked !== undefined){
+    if (checked !== undefined) {
       handleCheckbox(checked);
-      localStorage.setItem('is-checkbox-checked', checked);
     };
+
   }
 
   return (

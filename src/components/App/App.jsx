@@ -54,14 +54,15 @@ export default function App() {
   }, [loggedIn]);
 
   const signOut = React.useCallback(() => {
-    setLoggedIn(false);
-    setCurrentUser(null);
-    setSavedMovies([]);
-    navigate("/", { replace: true });
     localStorage.removeItem("token");
     localStorage.removeItem("movies");
     localStorage.removeItem("search-query");
     localStorage.removeItem("is-checkbox-checked");
+    setLoggedIn(false);
+    setCurrentUser(null);
+    setSavedMovies([]);
+    setMovies([]);
+    navigate("/", { replace: true });
   }, [navigate]);
 
   const handleTokenCheck = React.useCallback(() => {
@@ -130,6 +131,7 @@ export default function App() {
         .then((res) => {
           setMovies(res);
           localStorage.setItem("movies", JSON.stringify(res));
+          setErrorMessages("");
         })
         .catch((err) => {
           console.log(err);

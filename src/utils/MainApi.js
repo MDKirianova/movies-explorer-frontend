@@ -1,5 +1,4 @@
-// const baseUrl = `${process.env.REACT_APP_MAIN_API_URL}`;
-const baseUrl = "https://api.mdkirianova.bitfilms.nomoredomainsmonster.ru"
+const baseUrl = `${process.env.REACT_APP_MAIN_API_URL}`;
 
 function sendRequest(res) {
   if (res.ok) {

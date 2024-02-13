@@ -11,7 +11,6 @@ export default function FilterCheckbox({ handleCheckbox, isShortMoviesChecked })
     if (checked !== undefined) {
       handleCheckbox(checked);
     };
-
   }
 
   return (

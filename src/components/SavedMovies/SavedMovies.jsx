@@ -10,8 +10,7 @@ export default function SavedMovies({ movies, isAuthorized }) {
   const [currentSearchQuery, setCurrentSearchQuery] = React.useState("");
 
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onSubmit = () => {
     setSearchQuery(currentSearchQuery);
   };
 

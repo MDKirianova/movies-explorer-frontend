@@ -19,7 +19,6 @@ export default function Movies({ movies, isLoading, isAuthorized, error }) {
   }, [searchQuery, isShortMoviesCheckboxChecked]);
 
   const onSubmit = (evt) => {
-    evt.preventDefault();
     setSearchQuery(currentSearchQuery);
   };
 
@@ -37,7 +36,6 @@ export default function Movies({ movies, isLoading, isAuthorized, error }) {
     }
 
     if (isLoading) {
-      console.log(isLoading);
       return <Preloader />;
     }
 

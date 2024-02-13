@@ -1,11 +1,12 @@
 import React from "react";
 import MoviesCard from "../MoviesCard/MoviesCard.jsx";
+import useWindowSize from "../../hooks/useWindowSize.js";
 import "./MoviesCardList.css";
 
 export default function MoviesCardList({ movies, savedMoviesPage }) {
   const [visibleCards, setVisibleCards] = React.useState(0);
   const totalCards = movies.length;
-  const screenWidth = window.innerWidth;
+  const screenWidth = useWindowSize().width;
 
   const updateVisibleCards = React.useCallback(() => {
     let newVisibleCards;
@@ -14,43 +15,58 @@ export default function MoviesCardList({ movies, savedMoviesPage }) {
       newVisibleCards = 12;
     } else if (screenWidth >= 768 && screenWidth <= 1279) {
       newVisibleCards = 8;
-    } else if (screenWidth >= 480 && screenWidth <= 767) {
+    } else if (screenWidth >= 481 && screenWidth <= 767) {
       newVisibleCards = 5;
-    } else if (screenWidth >= 320 && screenWidth <= 479) {
-      newVisibleCards = 5;
-    } else {
+    } else if (screenWidth >= 320 && screenWidth <= 480) {
       newVisibleCards = 5;
     }
 
     setVisibleCards(Math.min(newVisibleCards, totalCards));
   }, [screenWidth, totalCards]);
 
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      updateVisibleCards();
+  
+  const debounce = (func, wait, immediate) => {
+    let timeout;
+    return function executedFunction() {
+      const context = this;
+      const args = arguments;
+      const later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
     };
+  }
+  
+  React.useEffect(() => {
+    const debouncedResize = debounce(() => {
+      updateVisibleCards();
+    }, 500);
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", debouncedResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", debouncedResize);
     };
   }, [updateVisibleCards]);
-
+  
   React.useEffect(() => {
     updateVisibleCards();
   }, [movies, updateVisibleCards]);
-
+  
   const loadMoreCards = () => {
     if (screenWidth >= 1280) {
-      setVisibleCards(Math.min(visibleCards + 3, totalCards));
+      setVisibleCards(visibleCards + 3);
     } else if (screenWidth >= 768) {
-      setVisibleCards(Math.min(visibleCards + 2, totalCards));
+      setVisibleCards(visibleCards + 2);
     } else {
-      setVisibleCards(Math.min(visibleCards + 2, totalCards));
+      setVisibleCards(visibleCards + 2);
     }
   };
+
 
   return (
     <section className="movies-card-list">

@@ -55,7 +55,7 @@ export default function MoviesCardList({ movies, savedMoviesPage }) {
   
   React.useEffect(() => {
     updateVisibleCards();
-  }, [movies, updateVisibleCards]);
+  }, [updateVisibleCards]);
   
   const loadMoreCards = () => {
     if (screenWidth >= 1280) {

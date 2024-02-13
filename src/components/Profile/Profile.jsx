@@ -65,6 +65,7 @@ export default function Profile({ signOut, isAuthorized, onUpdateUser, error }) 
               placeholder="E-mail"
               disabled={isSaveFormBtnVisible ? false : true}
               onChange={handleChange}
+              pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"
               required />
           </fieldset>
           <div className="profile__actions">

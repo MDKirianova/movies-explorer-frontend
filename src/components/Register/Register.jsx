@@ -55,6 +55,8 @@ export default function Register({ onRegister, error }) {
         onChange={handleChange}
         value={values.email || ""}
         autoComplete={"on"}
+        pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"
+
       />
       <Input
         name={"password"}

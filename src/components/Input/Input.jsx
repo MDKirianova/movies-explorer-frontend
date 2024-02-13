@@ -1,6 +1,7 @@
 import "./Input.css";
 
-export default function Input({ name, nameInput, inputId, inputType, defaultValue, placeholder, min, max, onChange, autoComplete, isError, errText }) {
+
+export default function Input({ name, nameInput, inputId, inputType, defaultValue, placeholder, min, max, onChange, autoComplete, isError, errText, pattern }) {
   return (
     <div className="input">
       <label
@@ -20,6 +21,7 @@ export default function Input({ name, nameInput, inputId, inputType, defaultValu
         maxLength={max}
         onChange={onChange}
         autoComplete={autoComplete}
+        pattern={pattern}
         />
       <span
         className={`error ${isError && "error_visible error_input"} || "" `}

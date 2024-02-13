@@ -151,6 +151,7 @@ export default function App() {
       })
       .catch((err) => {
         setErrorMessages(err);
+        setIsSuccessful(false);
         console.log(`Ошибка при редактировании профиля пользователя: ${err}`);
       })
       .finally(handleInfoTooltip);

@@ -3,7 +3,7 @@
   margin: 0 14px;
   display: flex;
   flex-direction: column;
-  row-gap: 30px;
+  row-gap: 8px;
   border-bottom: 1px solid #aaaaaa33;
 }
 
@@ -51,7 +51,7 @@
   .search-form {
     padding-bottom: 51px;
     margin: 0 30px;
-    row-gap: 26px;
+    row-gap: 5px;
   }
 
   .search-form__input-wrapper {

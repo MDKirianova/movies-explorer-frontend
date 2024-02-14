@@ -7,11 +7,11 @@ import AboutMe from "../AboutMe/AboutMe.jsx";
 import Portfolio from "../Portfolio/Portfolio.jsx";
 import Footer from "../Footer/Footer.jsx";
 
-export default function Main() {
+export default function Main({isAuthorized}) {
   return (
     <>
       <header>
-        <Header blueColor />
+        <Header blueColor isAuthorized={isAuthorized} />
       </header>
       <main>
         <Promo />

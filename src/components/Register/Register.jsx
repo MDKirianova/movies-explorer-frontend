@@ -34,7 +34,6 @@ export default function Register({ onRegister, error }) {
         inputId={"inputName"}
         inputType={"text"}
         placeholder={"Укажите ваше имя"}
-        defaultValue={"Виталий"}
         min={2}
         max={30}
         isError={!!errors["name"]}
@@ -49,7 +48,6 @@ export default function Register({ onRegister, error }) {
         inputId={"inputEmail"}
         inputType={"email"}
         placeholder={"Укажите свою почту"}
-        defaultValue={"pochta@yandex.ru"}
         isError={!!errors["email"]}
         errText={errors["email"]}
         onChange={handleChange}
@@ -64,7 +62,6 @@ export default function Register({ onRegister, error }) {
         inputId={"inputPassword"}
         inputType={"password"}
         placeholder={"Укажите свой пароль"}
-        defaultValue={"••••••••••••••"}
         min={5}
         isError={!!errors["password"]}
         errText={errors["password"]}

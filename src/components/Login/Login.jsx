@@ -33,7 +33,6 @@ export default function Login({ onLogin, error }) {
         inputId={"inputEmail"}
         inputType={"email"}
         placeholder={"Укажите свою почту"}
-        defaultValue={"pochta@yandex.ru"}
         isError={!!errors["email"]}
         errText={errors["email"]}
         onChange={handleChange}
@@ -47,7 +46,6 @@ export default function Login({ onLogin, error }) {
         inputId={"inputPassword"}
         inputType={"password"}
         placeholder={"Укажите свой пароль"}
-        defaultValue={""}
         min={5}
         isError={!!errors["password"]}
         errText={errors["password"]}
